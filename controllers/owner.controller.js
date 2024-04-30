@@ -22,27 +22,29 @@ const getSingleOwner = async (req, res) => {
 }
 const postOwner = async (req, res) => {
     try {
-        // Extract and process multiple uploaded images
-        const images = req.files ? req.files.map(file => ({
-            data: fs.readFileSync(file.path),
-            contentType: file.mimetype
-        })) : [];
-
-        // Create the owner with the uploaded images
-        const ownerData = req.body;
-        ownerData.images = images;
-        const owner = await Owner.create(ownerData);
-
-        // Delete temporary files after processing
-        if (req.files) {
-            req.files.forEach(file => fs.unlinkSync(file.path));
-        }
-
-        res.status(200).json(owner);
+      // Extract and process multiple uploaded images
+      const images = req.files ? req.files?.map(file => ({
+        data: file.buffer,
+        contentType: file.mimetype
+      })) : [];
+  
+      // Create the owner with the uploaded images
+      const ownerData = req.body;
+      ownerData.images = images;
+      const owner = await Owner.create(ownerData);
+  
+      // Delete temporary files after processing
+      if (req.files) {
+        req.files.forEach(file => {
+          // You can delete the file here if needed
+        });
+      }
+  
+      res.status(200).json(owner);
     } catch (error) {
-        res.status(500).json({ message: error.message });
+      res.status(500).json({ message: error.message });
     }
-};
+  };
 
 
 const updateOwner = async (req, res) => {

@@ -32,5 +32,5 @@ const PetSchema = new Schema({
   }
 )
 
-// const Pet = mongoose.model('Pet', PetSchema);
+
 module.exports = { PetSchema};
