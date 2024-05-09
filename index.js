@@ -32,8 +32,8 @@ mongoose.connect(uri)
         app.use("/api/owners", ownerRoutes);
 
         // Listen on port 3001
-        app.listen(3001 || PORT , () => {
-            console.log('Server is running on port 3001');
+        app.listen(3003 || PORT , () => {
+            console.log('Server is running on port 3003');
         });
     })
     .catch(err => console.log('Connection Failed!', err));

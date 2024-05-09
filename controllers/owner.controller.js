@@ -23,22 +23,17 @@ const getSingleOwner = async (req, res) => {
 const postOwner = async (req, res) => {
     try {
       // Extract and process multiple uploaded images
-      const images = req.files ? req.files?.map(file => ({
-        data: file.buffer,
-        contentType: file.mimetype
-      })) : [];
+    //   const images = req.files ? req.files?.map(file => ({
+    //     data: file.buffer,
+    //     contentType: file.mimetype
+    //   })) : [];
   
       // Create the owner with the uploaded images
       const ownerData = req.body;
-      ownerData.images = images;
+    //   ownerData.images = images;
       const owner = await Owner.create(ownerData);
   
-      // Delete temporary files after processing
-      if (req.files) {
-        req.files.forEach(file => {
-          // You can delete the file here if needed
-        });
-      }
+      
   
       res.status(200).json(owner);
     } catch (error) {

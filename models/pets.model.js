@@ -21,12 +21,9 @@ const PetSchema = new Schema({
       desc:{
         type: String,
       },
-      images:[
-        {
-            data: Buffer,
-            contentType: String,
-        }
-      ]
+      images:{
+        type: String,
+      }
   },{
      timestamps: true,
   }
